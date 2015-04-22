@@ -222,10 +222,12 @@ class Chosen extends AbstractChosen
         @search_results.scrollTop if (high_bottom - maxHeight) > 0 then (high_bottom - maxHeight) else 0
       else if high_top < visible_top
         @search_results.scrollTop high_top
+      @form_field_jq.trigger("highlighted", {el: el})
 
   result_clear_highlight: ->
     @result_highlight.removeClass "highlighted" if @result_highlight
     @result_highlight = null
+    @form_field_jq.trigger("clear-highlighted")
 
   results_show: ->
     if @is_multiple and @max_selected_options <= this.choices_count()
